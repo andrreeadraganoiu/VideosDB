@@ -118,15 +118,25 @@ public final class ActionInputData {
         this.number = 0;
     }
 
-    public int getActionId() { return actionId; }
+    public int getActionId() {
+        return actionId;
+    }
 
-    public String getActionType() { return actionType; }
+    public String getActionType() {
+        return actionType;
+    }
 
-    public String getType() { return type; }
+    public String getType() {
+        return type;
+    }
 
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getObjectType() { return objectType; }
+    public String getObjectType() {
+        return objectType;
+    }
 
     public String getSortType() {
         return sortType;

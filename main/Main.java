@@ -1,5 +1,4 @@
 package main;
-
 import checker.Checkstyle;
 import checker.Checker;
 import common.Constants;
@@ -7,16 +6,20 @@ import entertainment.Actor;
 import entertainment.Movie;
 import entertainment.Serial;
 import entertainment.User;
-import fileio.*;
+import fileio.Input;
+import fileio.InputLoader;
+import fileio.MovieInputData;
+import fileio.SerialInputData;
+import fileio.ActorInputData;
+import fileio.UserInputData;
+import fileio.Writer;
 import org.json.simple.JSONArray;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -76,34 +79,31 @@ public final class Main {
 
         //TODO add here the entry point to your implementation
 
-        ArrayList<Movie> MovieArray = new ArrayList<>();
-        for(MovieInputData movieInputData : input.getMovies()) {
+        ArrayList<Movie> movieArray = new ArrayList<>();
+        for (MovieInputData movieInputData : input.getMovies()) {
            Movie thisMovie = new Movie(movieInputData);
-           MovieArray.add(thisMovie);
+           movieArray.add(thisMovie);
         }
 
-        ArrayList<Serial> SerialArray = new ArrayList<>();
-        for(SerialInputData serialInputData : input.getSerials()) {
+        ArrayList<Serial> serialArray = new ArrayList<>();
+        for (SerialInputData serialInputData : input.getSerials()) {
             Serial thisSerial = new Serial(serialInputData);
-            SerialArray.add(thisSerial);
+            serialArray.add(thisSerial);
         }
 
-        ArrayList<User> UserArray = new ArrayList<>();
-        for(UserInputData userInputData : input.getUsers()) {
+        ArrayList<User> userArray = new ArrayList<>();
+        for (UserInputData userInputData : input.getUsers()) {
             User thisUser = new User(userInputData);
-            UserArray.add(thisUser);
+            userArray.add(thisUser);
         }
 
-        ArrayList<Actor> ActorArray = new ArrayList<>();
-        for(ActorInputData actorInputData : input.getActors()) {
+        ArrayList<Actor> actorsArray = new ArrayList<>();
+        for (ActorInputData actorInputData : input.getActors()) {
             Actor thisActor = new Actor(actorInputData);
-            ActorArray.add(thisActor);
+            actorsArray.add(thisActor);
         }
 
-//        for (ActionInputData action : input.getCommands()) {
-//           Action.doAction(input, arrayResult, MovieArray, SerialArray, UserArray, ActorArray);
-//        }
-        Action.doAction(input, arrayResult, MovieArray, SerialArray, UserArray, ActorArray);
+        Action.doAction(input, arrayResult, movieArray, serialArray, userArray, actorsArray);
 
         fileWriter.closeJSON(arrayResult);
     }

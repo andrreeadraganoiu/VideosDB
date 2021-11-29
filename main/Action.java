@@ -10,76 +10,86 @@ import entertainment.User;
 import fileio.ActionInputData;
 import fileio.Input;
 import org.json.simple.JSONArray;
-import query.ActorQuery;
-import query.UserQuery;
-import query.VideoQuery;
+import queries.ActorQuery;
+import queries.UserQuery;
+import queries.VideoQuery;
 import recommendations.Premium;
 import recommendations.Basic;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Action {
+public final class Action {
 
+    private Action() {
+    }
     /**
+     * Se executa actiunile corespunzatoare.
      * @param input
      * @param arrayResult
-     * @param MovieArray
-     * @param SerialArray
-     * @param UserArray
+     * @param movieArray
+     * @param serialArray
+     * @param userArray
+     * @param actorArray
      * @return
      * @throws IOException
      */
     public static JSONArray doAction(final Input input,
                                       final JSONArray arrayResult,
-                                      final ArrayList<Movie> MovieArray,
-                                      final ArrayList<Serial> SerialArray,
-                                      final ArrayList<User> UserArray,
-                                      final ArrayList<Actor> ActorArray
+                                      final ArrayList<Movie> movieArray,
+                                      final ArrayList<Serial> serialArray,
+                                      final ArrayList<User> userArray,
+                                      final ArrayList<Actor> actorArray
                                       ) throws IOException {
 
-        for(ActionInputData action : input.getCommands()) {
+        for (ActionInputData action : input.getCommands()) {
             if (action.getActionType().equals("command")) {
                 if (action.getType().equals("favorite")) {
-                    arrayResult.add(Favorite.addToFavorite(action, MovieArray, SerialArray, UserArray));
+                    arrayResult.add(Favorite.addToFavorite(action, movieArray,
+                                                           serialArray, userArray));
                 } else if (action.getType().equals("view")) {
-                    arrayResult.add(View.addToViewed(action, UserArray));
+                    arrayResult.add(View.addToViewed(action, userArray));
                 } else if (action.getType().equals("rating")) {
-                    arrayResult.add(Rating.giveRating(action, MovieArray, SerialArray, UserArray));
+                    arrayResult.add(Rating.giveRating(action, movieArray,
+                                                      serialArray, userArray));
                 }
-            } else if (action.getActionType().equals("query")) {
+            } else if (action.getActionType().equals("queries")) {
                 if (action.getCriteria().equals("average")) {
-                    arrayResult.add(ActorQuery.average(action, MovieArray, SerialArray, ActorArray));
+                    arrayResult.add(ActorQuery.average(action, movieArray,
+                                                       serialArray, actorArray));
                 } else if (action.getCriteria().equals("awards")) {
-                    arrayResult.add(ActorQuery.awards(action, ActorArray));
+                    arrayResult.add(ActorQuery.awards(action, actorArray));
                 } else if (action.getCriteria().equals("filter_description")) {
-                    arrayResult.add(ActorQuery.filterDescription(action, ActorArray));
+                    arrayResult.add(ActorQuery.filterDescription(action, actorArray));
                 } else if (action.getCriteria().equals("ratings")) {
-                    arrayResult.add(VideoQuery.rating(action, MovieArray, SerialArray));
+                    arrayResult.add(VideoQuery.rating(action, movieArray, serialArray));
                 } else if (action.getCriteria().equals("favorite")) {
-                    arrayResult.add(VideoQuery.favorite(action, MovieArray, SerialArray, UserArray));
+                    arrayResult.add(VideoQuery.favorite(action, movieArray,
+                                                        serialArray, userArray));
                 } else if (action.getCriteria().equals("longest")) {
-                    arrayResult.add(VideoQuery.longest(action, MovieArray, SerialArray));
+                    arrayResult.add(VideoQuery.longest(action, movieArray, serialArray));
                 } else if (action.getCriteria().equals("most_viewed")) {
-                    arrayResult.add(VideoQuery.mostViewed(action, MovieArray, SerialArray, UserArray));
+                    arrayResult.add(VideoQuery.mostViewed(action, movieArray,
+                                                          serialArray, userArray));
                 } else if (action.getCriteria().equals("num_ratings")) {
-                    arrayResult.add(UserQuery.noRatings(action, UserArray));
+                    arrayResult.add(UserQuery.noRatings(action, userArray));
                 }
             } else if (action.getActionType().equals("recommendation")) {
                 if (action.getType().equals("standard")) {
-                    arrayResult.add(Basic.standard(action, MovieArray, SerialArray, UserArray));
-                }
-                else if (action.getType().equals("best_unseen")) {
-                    arrayResult.add(Basic.bestUnseen(action, MovieArray, SerialArray, UserArray));
-                }
-                else if (action.getType().equals("popular")) {
-                    arrayResult.add(Premium.popular(action, MovieArray, SerialArray, UserArray));
-                }
-                else if (action.getType().equals("favorite")) {
-                    arrayResult.add(Premium.favorite(action, MovieArray, SerialArray, UserArray));
-                }
-                else if (action.getType().equals("search")) {
-                    arrayResult.add(Premium.search(action, MovieArray, SerialArray, UserArray));
+                    arrayResult.add(Basic.standard(action, movieArray,
+                                                   serialArray, userArray));
+                } else if (action.getType().equals("best_unseen")) {
+                    arrayResult.add(Basic.bestUnseen(action, movieArray,
+                                                     serialArray, userArray));
+                } else if (action.getType().equals("popular")) {
+                    arrayResult.add(Premium.popular(action, movieArray,
+                                                    serialArray, userArray));
+                } else if (action.getType().equals("favorite")) {
+                    arrayResult.add(Premium.favorite(action, movieArray,
+                                                     serialArray, userArray));
+                } else if (action.getType().equals("search")) {
+                    arrayResult.add(Premium.search(action, movieArray,
+                                                   serialArray, userArray));
                 }
             }
         }

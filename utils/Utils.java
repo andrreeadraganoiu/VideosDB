@@ -128,6 +128,11 @@ public final class Utils {
         return mapVideos;
     }
 
+    /**
+     * @param users
+     * @param action
+     * @return
+     */
     public static User returnUser(final ArrayList<User> users,
                                   final ActionInputData action) {
         for (User user : users) {
@@ -138,6 +143,11 @@ public final class Utils {
         return null;
     }
 
+    /**
+     * @param movies
+     * @param action
+     * @return
+     */
     public static Movie returnMovie(final ArrayList<Movie> movies,
                                     final ActionInputData action) {
         for (Movie movie : movies) {
@@ -148,6 +158,11 @@ public final class Utils {
         return null;
     }
 
+    /**
+     * @param serials
+     * @param action
+     * @return
+     */
     public static Serial returnSerial(final ArrayList<Serial> serials,
                                       final ActionInputData action) {
         for (Serial serial : serials) {
@@ -158,20 +173,29 @@ public final class Utils {
         return null;
     }
 
+    /**
+     * @param movies
+     * @param title
+     * @return
+     */
     public static Movie findMovieByString(final ArrayList<Movie> movies,
                                           final String title) {
-        for(Movie movie : movies) {
-            if(movie.getMovie().getTitle().equals(title)) {
+        for (Movie movie : movies) {
+            if (movie.getMovie().getTitle().equals(title)) {
                 return movie;
             }
         }
         return null;
     }
-
+    /**
+     * @param serials
+     * @param title
+     * @return
+     */
     public static Serial findSerialByString(final ArrayList<Serial> serials,
                                           final String title) {
-        for(Serial serial : serials) {
-            if(serial.getSerial().getTitle().equals(title)) {
+        for (Serial serial : serials) {
+            if (serial.getSerial().getTitle().equals(title)) {
                 return serial;
             }
         }

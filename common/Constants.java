@@ -51,7 +51,7 @@ public final class Constants {
     public static final String WORDS = "words";
     public static final String REVIEWS = "reviews";
     public static final String MESSAGE = "message";
-    public static final String QUERY = "query";
+    public static final String QUERY = "queries";
     public static final String COMMAND = "command";
     public static final String RECOMMENDATION = "recommendation";
 

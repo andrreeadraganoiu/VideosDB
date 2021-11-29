@@ -5,12 +5,20 @@ import entertainment.Serial;
 import entertainment.User;
 import fileio.ActionInputData;
 import org.json.simple.JSONObject;
+import utils.Utils;
 
 import java.util.ArrayList;
 
-public class Favorite {
+public final class Favorite {
+
+    private Favorite() {
+    }
 
     /**
+     * Adauga un film/serial in lista de favorite a unui utilizator in cazul in care
+     * nu exista deja.
+     * Pentru aceasta se verifica mai intai daca userul a vazut video-ul.
+     *
      * @param action
      * @param movies
      * @param serials
@@ -24,39 +32,27 @@ public class Favorite {
 
         JSONObject file = new JSONObject();
         file.put("id", action.getActionId());
-        User newUser = null;
 
-        for (User user : users) {
-            if (user.getUser().getUsername().equals(action.getUsername())) {
-                newUser = user;
-                break;
-            }
-        }
-        if (!newUser.getUser().getHistory().containsKey(action.getTitle())) {
+        User user = Utils.returnUser(users, action);
+
+        if (!user.getUser().getHistory().containsKey(action.getTitle())) {
             file.put("message", "error -> " + action.getTitle() + " is not seen");
             return file;
         }
-        if (newUser.getUser().getFavoriteMovies().contains(action.getTitle())) {
+        if (user.getUser().getFavoriteMovies().contains(action.getTitle())) {
             file.put("message", "error -> " + action.getTitle() + " is already in favourite list");
             return file;
         }
 
         for (Movie m : movies) {
             if (m.getMovie().getTitle().equals(action.getTitle())) {
-                newUser.getUser().getFavoriteMovies().add(m.getMovie().getTitle());
-                m.updateNoFavoriteAdd();
+                user.getUser().getFavoriteMovies().add(m.getMovie().getTitle());
             }
         }
 
-//        for (Serial s : serials) {
-//            if (s.getSerial().getTitle().equals(action.getTitle())) {
-//                newUser.getFavoriteSerials().add(s.getSerial().getTitle());
-//            }
-//        }
         for (Serial s : serials) {
             if (s.getSerial().getTitle().equals(action.getTitle())) {
-                newUser.getUser().getFavoriteMovies().add(s.getSerial().getTitle());
-                s.updateNoFavoriteAdd();
+                user.getUser().getFavoriteMovies().add(s.getSerial().getTitle());
             }
         }
 
