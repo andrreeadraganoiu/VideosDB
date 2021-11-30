@@ -10,9 +10,9 @@ import entertainment.User;
 import fileio.ActionInputData;
 import fileio.Input;
 import org.json.simple.JSONArray;
-import queries.ActorQuery;
-import queries.UserQuery;
-import queries.VideoQuery;
+import query.ActorQuery;
+import query.UserQuery;
+import query.VideoQuery;
 import recommendations.Premium;
 import recommendations.Basic;
 
@@ -53,7 +53,7 @@ public final class Action {
                     arrayResult.add(Rating.giveRating(action, movieArray,
                                                       serialArray, userArray));
                 }
-            } else if (action.getActionType().equals("queries")) {
+            } else if (action.getActionType().equals("query")) {
                 if (action.getCriteria().equals("average")) {
                     arrayResult.add(ActorQuery.average(action, movieArray,
                                                        serialArray, actorArray));

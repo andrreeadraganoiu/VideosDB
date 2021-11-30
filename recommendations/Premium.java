@@ -5,7 +5,7 @@ import entertainment.Serial;
 import entertainment.User;
 import fileio.ActionInputData;
 import org.json.simple.JSONObject;
-import queries.VideoQuery;
+import query.VideoQuery;
 import utils.Utils;
 import java.util.ArrayList;
 import java.util.Collections;

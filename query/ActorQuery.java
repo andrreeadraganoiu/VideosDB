@@ -1,4 +1,4 @@
-package queries;
+package query;
 import actor.ActorsAwards;
 import entertainment.Actor;
 import entertainment.Movie;

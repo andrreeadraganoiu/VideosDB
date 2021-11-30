@@ -1,4 +1,4 @@
-package queries;
+package query;
 
 import entertainment.User;
 import fileio.ActionInputData;
