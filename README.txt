@@ -1,11 +1,11 @@
 322CD Draganoiu Andreea
 
-link github : https://github.com/andreea-00/Tema1_POO.git
+Tema - VideosDB
 
 Main :  Se gasesc arraylist-uri pentru filme, seriale, useri si actori.
-	Fiecare entitate din array este o clasa noua -Movie, Serial, User,
-	Actor- care se afla in compunere cu clasele primite default -MovieInputData,
-	SerialInputData, UserInputData si ActorInputData pentru a nu
+	Fiecare entitate din array este o clasa noua (Movie, Serial, User,
+	Actor) care se afla in compunere cu clasele primite default (MovieInputData,
+	SerialInputData, UserInputData si ActorInputData) pentru a nu
 	altera parsarea datelor din aceste clase. Se apeleaza fiecare
 	actiune in clasa Action.
 

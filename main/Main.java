@@ -77,8 +77,6 @@ public final class Main {
         Writer fileWriter = new Writer(filePath2);
         JSONArray arrayResult = new JSONArray();
 
-        //TODO add here the entry point to your implementation
-
         ArrayList<Movie> movieArray = new ArrayList<>();
         for (MovieInputData movieInputData : input.getMovies()) {
            Movie thisMovie = new Movie(movieInputData);
